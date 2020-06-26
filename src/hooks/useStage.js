@@ -3,15 +3,15 @@ import { createStage } from '../gameHelpers';
 
 export const useStage = (player, resetPlayer) => {
   const [stage, setStage] = useState(createStage());
-  const [rowCleared, setRowCleared] = useState(0);
+  const [rowsCleared, setrowsCleared] = useState(0);
 
   useEffect(() => {
-    setRowCleared(0);
+    setrowsCleared(0);
 
     const sweepRow = newStage => 
       newStage.reduce((acc, row) => {
         if (row.findIndex(cell => cell[0] === 0) === -1){
-          setRowCleared(prev => prev + 1);
+          setrowsCleared(prev => prev + 1);
           acc.unshift(new Array(newStage[0].length).fill([0, "clear"]));
           return acc;
         }
@@ -45,5 +45,5 @@ export const useStage = (player, resetPlayer) => {
     };
     setStage(prev => updateStage(prev));
   }, [player, resetPlayer]);
-  return [stage, setStage, rowCleared];
+  return [stage, setStage, rowsCleared];
 };

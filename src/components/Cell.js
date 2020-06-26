@@ -10,4 +10,5 @@ const Cell = ({type}) => {
   )
 }
 
-export default Cell
+//optimization, use React.memo to avoid rerendering cell when they are not changed
+export default React.memo(Cell)
